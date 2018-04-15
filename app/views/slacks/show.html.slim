@@ -3,27 +3,27 @@
   br
 
 = form_for @poster, url: exec_slack_path do |f|
-  | URI
-  '
-  = f.text_field :uri
-  br
-  | Mention1
-  '
-  | @
-  = f.text_field :mention1
-  br
-  | Mention2
-  '
-  | @
-  = f.text_field :mention2
-  br
-  | Mention3
-  '
-  | @
-  = f.text_field :mention3
-  br
-  | TEXT
-  '
-  = f.text_field :text
-  br
+  table
+    tr
+      td URI
+      td = f.text_field :uri
+    tr
+      td  Mention1
+      td
+        | @
+        = f.text_field :mention1
+    tr
+      td  Mention2
+      td
+        | @
+        = f.text_field :mention2
+    tr
+      td  Mention3
+      td
+        | @
+        = f.text_field :mention3
+    tr
+      td TEXT
+      td = f.text_field :text
+
   = f.submit 'send'
