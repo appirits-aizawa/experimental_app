@@ -1,13 +1,29 @@
 - if notice.present?
   = notice
   br
-= form_tag exec_slack_path do
+
+= form_for @poster, url: exec_slack_path do |f|
   | URI
   '
-  = text_field_tag 'uri'
+  = f.text_field :uri
+  br
+  | Mention1
+  '
+  | @
+  = f.text_field :mention1
+  br
+  | Mention2
+  '
+  | @
+  = f.text_field :mention2
+  br
+  | Mention3
+  '
+  | @
+  = f.text_field :mention3
   br
   | TEXT
   '
-  = text_field_tag 'text'
+  = f.text_field :text
   br
-  = submit_tag 'send'
+  = f.submit 'send'

@@ -1,15 +1,12 @@
 class Poster
   include ActiveModel::Model
 
-  attr_reader :result, :msg, :uri, :text
+  PERMITTED_PARAMS = %i[uri text mention1 mention2 mention3].freeze
+  attr_reader :result, :msg
+  attr_accessor(*PERMITTED_PARAMS)
 
   validates :uri, :text, presence: true
   validate :check_uri
-
-  def initialize(uri: nil, text: nil)
-    @uri  = uri
-    @text = text
-  end
 
   def exec
     return failure 'invalid' unless valid?
@@ -28,7 +25,7 @@ class Poster
 
     req = Net::HTTP::Post.new(uri.request_uri)
     req['Content-Type'] = 'application/json'
-    payload = { text: @text }.to_json
+    payload = { text: text_body }.to_json
     req.body = payload
     https.request(req)
   end
@@ -47,5 +44,22 @@ class Poster
   def failure(msg)
     @result = false
     @msg = msg
+  end
+
+  def text_body
+    [
+      *mentions,
+      @text
+    ].join(' ')
+  end
+
+  def mentions
+    [@mention1, @mention2, @mention3].map(&method(:add_at)).compact
+  end
+
+  def add_at(mention)
+    return if mention.blank?
+    mention_with_at = mention.start_with?('@') ? mention : "@#{mention}"
+    "<#{mention_with_at}>"
   end
 end
