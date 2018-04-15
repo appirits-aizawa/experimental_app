@@ -1,0 +1,13 @@
+- if notice.present?
+  = notice
+  br
+= form_tag exec_slack_path do
+  | URI
+  '
+  = text_field_tag 'uri'
+  br
+  | TEXT
+  '
+  = text_field_tag 'text'
+  br
+  = submit_tag 'send'
