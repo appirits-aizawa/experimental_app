@@ -14,6 +14,15 @@ module Api
       render json: { result: poster.msg }
     end
 
+    def analyze_and_exec
+      req = request.body.read
+      json = JSON.parse(req)
+      poster = Poster.new(content_hash: params[:content_hash])
+      poster.text = json.inspect
+      poster.exec
+      render json: { result: poster.msg }
+    end
+
     private
 
     def poster_params

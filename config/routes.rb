@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resource :slack, only: [] do
       post ':content_hash/exec', to: 'slacks#exec', as: :exec_api_slack
       post :exec_json
+      post ':content_hash/analyze_and_exec', to: 'slacks#analyze_and_exec', as: :analyze_and_exec_api_slack
     end
   end
 end
