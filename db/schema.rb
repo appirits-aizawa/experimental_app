@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416025002) do
+ActiveRecord::Schema.define(version: 20180417103801) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -43,8 +43,7 @@ ActiveRecord::Schema.define(version: 20180416025002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["content_hash"], name: "index_webhooks_on_content_hash", unique: true
-    t.index ["uri"], name: "index_webhooks_on_uri", unique: true
-    t.index ["user_id"], name: "index_webhooks_on_user_id"
+    t.index ["uri", "user_id"], name: "index_webhooks_on_uri_and_user_id", unique: true
   end
 
 end

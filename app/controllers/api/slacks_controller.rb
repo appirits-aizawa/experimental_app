@@ -8,7 +8,7 @@ module Api
     TRANSFER_OBJECT_KIND = {
       'merge_request' => 'マージリクエスト',
       'issue' => 'Issue'
-    }
+    }.freeze
 
     def exec
       poster = Poster.new poster_params
