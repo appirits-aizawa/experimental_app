@@ -1,14 +1,17 @@
 class Poster
   include ActiveModel::Model
 
-  PERMITTED_PARAMS = %i[uri text mention1 mention2 mention3].freeze
+  PERMITTED_PARAMS = %i[text mention1 mention2 mention3 content_hash].freeze
   attr_reader :result, :msg
   attr_accessor(*PERMITTED_PARAMS)
+  attr_accessor :uri
 
+  validates :content_hash, presence: true
   validates :uri, :text, presence: true
   validate :check_uri
 
   def exec
+    set_uri
     return failure 'invalid' unless valid?
     send_text
     success 'success'
@@ -17,6 +20,12 @@ class Poster
   end
 
   private
+
+  def set_uri
+    return unless @content_hash
+    return unless (webhook = Webhook.find_by content_hash: @content_hash)
+    self.uri = webhook.uri
+  end
 
   def send_text
     uri = URI.parse(@uri)
@@ -33,7 +42,7 @@ class Poster
   def check_uri
     return unless @uri
     return if @uri.start_with? 'https://hooks.slack.com/services/'
-    errors.add :uri, 'is invalid'
+    errors.add :content_hash, 'is invalid'
   end
 
   def success(msg)

@@ -7,4 +7,16 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
+    p.notice = notice
+    p.alert = alert
+    - if user_signed_in?
+      = link_to 'Webhook設定', webhooks_path
+      '
+      = link_to 'Webから', slack_path
+      '
+      = link_to 'ログアウト', destroy_user_session_path, method: :delete
+    - else
+      = link_to 'ログイン', new_user_session_path
+
+    br
     = yield

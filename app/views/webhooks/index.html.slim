@@ -1,0 +1,29 @@
+h1 Listing webhooks
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    tr
+      td URI
+      td 名前
+      td ハッシュ
+      td 詳細
+      td 編集
+      td 削除
+    - @webhooks.each do |webhook|
+      tr
+        td = webhook.uri
+        td = webhook.name
+        td = webhook.content_hash
+        td = link_to '詳細', webhook_path(webhook.content_hash)
+        td = link_to '編集', edit_webhook_path(webhook.content_hash)
+        td = link_to '削除', webhook, data: { confirm: '本当に削除しますか' }, method: :delete
+
+br
+
+= link_to '新規登録', new_webhook_path

@@ -1,7 +1,5 @@
 module Api
-  class SlacksController < ApplicationController
-    protect_from_forgery with: :null_session
-
+  class SlacksController < ApiController
     def exec
       poster = Poster.new poster_params
       poster.exec

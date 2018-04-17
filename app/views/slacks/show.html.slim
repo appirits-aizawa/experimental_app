@@ -5,8 +5,8 @@
 = form_for @poster, url: exec_slack_path do |f|
   table
     tr
-      td URI
-      td = f.text_field :uri
+      td Webhook
+      td = f.select :content_hash, @webhook_selection
     tr
       td  Mention1
       td

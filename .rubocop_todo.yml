@@ -93,6 +93,12 @@ Style/StringLiterals:
     - 'bin/yarn'
     - 'config/environments/production.rb'
     - 'config/puma.rb'
+    - 'spec/**/*'
+    - 'db/**/*'
+
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -114,3 +120,23 @@ Style/SymbolArray:
 # URISchemes: http, https
 Metrics/LineLength:
   Max: 130
+  Exclude:
+    - 'config/initializers/devise.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*'
+    - 'config/initializers/devise.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/**/*'
+    - 'spec/**/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'db/**/*'
+    - 'spec/**/*'
+
+AsciiComments:
+  Enabled: false
