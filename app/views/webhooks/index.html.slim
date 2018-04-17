@@ -22,7 +22,7 @@ table
         td = webhook.content_hash
         td = link_to '詳細', webhook_path(webhook.content_hash)
         td = link_to '編集', edit_webhook_path(webhook.content_hash)
-        td = link_to '削除', webhook, data: { confirm: '本当に削除しますか' }, method: :delete
+        td = link_to '削除', webhook_path(webhook.content_hash), data: { confirm: '本当に削除しますか' }, method: :delete
 
 br
 
