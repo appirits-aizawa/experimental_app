@@ -3,18 +3,18 @@ h1 Listing webhooks
 table
   thead
     tr
-      th Slack URL
       th 名前
       th Post URL
+      th 詳細
       th 編集
       th 削除
 
   tbody
     - @webhooks.each do |webhook|
       tr
-        td = webhook.uri
         td = webhook.name
         td = webhook.slack_url
+        td = link_to '詳細', webhook_path(webhook.content_hash)
         td = link_to '編集', edit_webhook_path(webhook.content_hash)
         td = link_to '削除', webhook_path(webhook.content_hash), data: { confirm: '本当に削除しますか' }, method: :delete
 

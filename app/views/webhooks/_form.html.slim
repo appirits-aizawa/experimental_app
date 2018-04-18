@@ -12,6 +12,9 @@
         = f.label :uri
       td
         = f.text_field :uri
+        - unless @webhook.new_record?
+          br
+          | 変更しない場合は空白
     tr
       td
         = f.label :name

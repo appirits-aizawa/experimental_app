@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :webhooks, param: :content_hash, except: :show
+  resources :webhooks, param: :content_hash
 
   resource :slack, only: :show do
     post :exec

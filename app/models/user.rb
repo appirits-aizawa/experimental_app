@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   include ContentHash
 
-  has_many :webhooks
+  has_many :webhooks, dependent: :destroy
 end

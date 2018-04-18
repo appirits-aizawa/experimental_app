@@ -1,0 +1,11 @@
+defaults: &defaults
+  encryption_key: 'ecd1ea17d44b9209c5e9eb91dff3383c'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

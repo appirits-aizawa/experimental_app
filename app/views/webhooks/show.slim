@@ -1,0 +1,11 @@
+table
+  tbody
+    tr
+      th Slack URL
+      td = @webhook.decrypted_uri
+    tr
+      th 名前
+      td = @webhook.name
+    tr
+      th Post URL
+      td = @webhook.slack_url
