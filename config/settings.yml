@@ -9,3 +9,4 @@ test:
 
 production:
   <<: *defaults
+  encryption_key: <%= ENV['ENCRYPTION_KEY']%>
