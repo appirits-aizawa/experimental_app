@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resource :gitlab, only: [] do
-      post ':content_hash/exec', to: 'gitlabs#exec', as: :exec
+      post ':content_hash', to: 'gitlabs#exec', as: :exec
     end
   end
 end
