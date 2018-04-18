@@ -24,7 +24,7 @@ class Poster
   def set_uri
     return unless @content_hash
     return unless (webhook = Webhook.find_by content_hash: @content_hash)
-    self.uri = webhook.uri
+    self.uri = webhook.decrypted_uri
   end
 
   def send_text
