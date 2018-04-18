@@ -5,8 +5,6 @@ class WebhooksController < ApplicationController
     @webhooks = Webhook.where(user: current_user)
   end
 
-  def show; end
-
   def new
     @webhook = Webhook.new
   end
