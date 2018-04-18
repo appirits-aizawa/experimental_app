@@ -45,7 +45,9 @@ module Api
     end
 
     def assignee_changed?
-      @json.dig('changes', 'assignee_id').present?
+      return false if @json.dig('changes', 'assignee_id').blank?
+      return false if @json.dig('assignee', 'username').blank?
+      true
     end
 
     def analyze_text(json)
