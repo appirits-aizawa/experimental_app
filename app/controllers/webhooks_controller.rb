@@ -50,7 +50,7 @@ class WebhooksController < ApplicationController
   private
 
   def set_webhook
-    @webhook = Webhook.find_by(content_hash: params[:content_hash])
+    @webhook = Webhook.find_by!(content_hash: params[:content_hash])
   end
 
   def webhook_params
