@@ -46,7 +46,7 @@ module Api
 
     def assignee_changed?
       return false if @json.dig('assignee', 'username').blank?
-      return true  if @json.dig('changes', 'total_time_spent', 'current') == 0
+      # return true  if @json.dig('changes', 'total_time_spent', 'current') == 0
       return false if @json.dig('changes', 'assignee_id').blank?
       true
     end
